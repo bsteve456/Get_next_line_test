@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 19:41:30 by blacking          #+#    #+#             */
-/*   Updated: 2019/10/21 21:53:07 by blacking         ###   ########.fr       */
+/*   Updated: 2019/10/21 22:18:42 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int get_next_line(int fd, char **line)
 {
-	if(!line)
+	if(!line || fd == -1)
 		return (-1);
 	return (0);
 }
