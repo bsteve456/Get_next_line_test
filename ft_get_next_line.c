@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 19:41:30 by blacking          #+#    #+#             */
-/*   Updated: 2019/10/23 00:00:44 by blacking         ###   ########.fr       */
+/*   Updated: 2019/10/23 01:05:40 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char *ft_line_read(int newline_read, char *cumul)
 	return (dest);
 }
 
-char	*ft_strmcat(const char *line, const char *buf)
+char	*ft_strmcat(const char *line, const char *buf, int read_file)
 {
 	char	*dest;
 	int		i;
@@ -73,21 +73,19 @@ char	*ft_strmcat(const char *line, const char *buf)
 
 	i = 0;
 	j = 0;
-	if(!(dest = (char *)malloc(sizeof(char) *
-	(ft_strlen(line) + ft_strlen(buf) + 1))))
+	if(!(dest = ft_calloc(sizeof(char), (ft_strlen(line) + read_file + 1))))
 		return (NULL);
-	while (line[i] || buf[j])
+	while (line[i])
 	{
-		if(line[i])
 			dest[i] = line[i];
-		else
-		{
-			dest[i] = buf[j];
-			j++;
-		}
-		i++;
+			i++;
 	}
-	dest[i] = '\0';
+	while(j < read_file)
+	{
+		dest[i + j] = buf[j];
+		j++;
+	}
+	dest[i + j] = '\0';
 	return (dest);
 }
 
@@ -108,8 +106,8 @@ int get_next_line(int fd, char **line)
 	while(read_file > 0)
 	{
 		read_file = read(fd, buf, BUFFER_SIZE);
-		cumul = ft_strmcat(cumul, buf);
-		printf("buf : %s cumul : %s\n",buf, cumul);
+		if(read_file != 0)
+			cumul = ft_strmcat(cumul, buf, read_file);
 		if (ft_newline(buf) == 1 ||
 		(read_file == 0 && newline_read < ft_count_newline(cumul)))
 		{
