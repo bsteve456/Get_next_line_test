@@ -6,7 +6,7 @@
 /*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 14:24:33 by stbaleba          #+#    #+#             */
-/*   Updated: 2019/10/21 21:55:03 by blacking         ###   ########.fr       */
+/*   Updated: 2019/10/22 14:28:46 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,8 @@ int main()
 	line = (char **)malloc(sizeof(char *));
 	int fd = open("./test0", O_RDWR);
 	ft_check_get_new_line(fd, line);
+	close(fd);
+	fd = open("./test1", O_RDWR);
+	ft_check_get_new_line(fd, line);
+	close(fd);
 }
