@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 19:41:30 by blacking          #+#    #+#             */
-/*   Updated: 2019/10/22 18:37:46 by blacking         ###   ########.fr       */
+/*   Updated: 2019/10/23 00:00:44 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,46 @@ static int ft_newline(char *buf)
 	return (0);
 }
 
-void	*ft_calloc(size_t count, size_t size) {
-	size_t i;
-	unsigned char *data;
-
-	i = 0;
-	if(!(data = (unsigned char *)malloc(size * count)))
-		return (NULL);
-	while(i < size * count)
-	{
-		data[i] = '\0';
-		i++;
-	}
-	return (data);
-}
-
-size_t ft_strlen(const char *s) {
-	size_t count;
+int		ft_count_newline(char *cumul)
+{
+	int count;
 
 	count = 0;
-	if(s == 0)
-		return 0;
-	while(s[count])
-		count++;
-	return count;
+	while(*cumul)
+	{
+		if(*cumul == '\n')
+			count++;
+		cumul++;
+	}
+	return (count);
 }
 
+char *ft_line_read(int newline_read, char *cumul)
+{
+	char *dest;
+	int next_newline_found;
+	int i;
+
+	next_newline_found = 0;
+	if(!(dest = ft_calloc(sizeof(char), ft_length_btn_nl(newline_read, cumul))))
+		return (NULL);
+	i = 0;
+	while(*cumul && next_newline_found != -1)
+	{
+		if(next_newline_found == newline_read && *cumul != '\n')
+		{
+			dest[i] = *cumul;
+			i++;
+		}
+		else if(next_newline_found > newline_read)
+			next_newline_found = -1;
+		else if(*cumul == '\n')
+			next_newline_found++;
+		cumul++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
 
 char	*ft_strmcat(const char *line, const char *buf)
 {
@@ -62,7 +76,7 @@ char	*ft_strmcat(const char *line, const char *buf)
 	if(!(dest = (char *)malloc(sizeof(char) *
 	(ft_strlen(line) + ft_strlen(buf) + 1))))
 		return (NULL);
-	while (line[i] || (buf[j] && buf[j] != '\n'))
+	while (line[i] || buf[j])
 	{
 		if(line[i])
 			dest[i] = line[i];
@@ -80,25 +94,31 @@ char	*ft_strmcat(const char *line, const char *buf)
 
 int get_next_line(int fd, char **line)
 {
+	static char *cumul = NULL;
+	static int newline_read = 0;
+	int read_file;
 	char *buf;
-	int  read_file;
 
 	read_file = 1;
+	if(!cumul)
+		cumul = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 	if(!(buf = ft_calloc(sizeof(char), (BUFFER_SIZE + 1))) ||
-	!line || fd == -1 || !(*line = ft_calloc(sizeof(char), (BUFFER_SIZE + 1))))
+	!line || fd == -1)
 		return (-1);
 	while(read_file > 0)
 	{
 		read_file = read(fd, buf, BUFFER_SIZE);
-		if(read_file != 0 && *buf != '\n')
+		cumul = ft_strmcat(cumul, buf);
+		printf("buf : %s cumul : %s\n",buf, cumul);
+		if (ft_newline(buf) == 1 ||
+		(read_file == 0 && newline_read < ft_count_newline(cumul)))
 		{
-			*line = ft_strmcat(*line, buf);
-			if(ft_newline(buf) == 1)
-				return (1);
+			if(!(*line = ft_line_read(newline_read, cumul)))
+				return (-1);
+			newline_read++;
+			return (1);
 		}
-		printf("line: %s fd : %d\n", *line,  read_file);
 	}
-	if(**line)
-		return (1);
+	*line = NULL;
 	return (0);
 }
