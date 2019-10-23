@@ -6,7 +6,7 @@
 /*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 14:24:33 by stbaleba          #+#    #+#             */
-/*   Updated: 2019/10/23 14:34:54 by stbaleba         ###   ########.fr       */
+/*   Updated: 2019/10/23 15:02:30 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,18 @@ int main()
 //	fd = open("./test4", O_RDWR);
 //	ft_check_gnl_loop(fd, &line);
 //	close(fd);
-	printf("----RANDOM-----\n");
-	fd = open("/dev/random", O_RDWR);
-	ft_check_gnl_loop(fd, &line);
-	close(fd);
+//	printf("----RANDOM-----\n");
+//	fd = open("/dev/random", O_RDWR);
+//	ft_check_gnl_loop(fd, &line);
+//	close(fd);
 //	printf("---Test_GNL_5---\n");
 //	fd = open("../ft_get_next_line.c", O_RDWR);
-//	ft_check_gnl_loop(fd, line);
+//	ft_check_gnl_loop(fd, &line);
 //	close(fd);
-
+	int i = 0;
+	while(i < 3){
+		get_next_line(0, &line);
+		printf("%s\n", line);
+		i++;
+	}
 }
