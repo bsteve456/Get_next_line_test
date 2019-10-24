@@ -6,7 +6,7 @@
 /*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 14:24:33 by stbaleba          #+#    #+#             */
-/*   Updated: 2019/10/24 11:37:40 by blacking         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:09:05 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ int main()
 {
 	char *line = NULL;
 	int fd = 0;
-//	fd = open("./test0", O_RDWR);
-//	printf("---Test_GNL_0---\n");
-//	ft_check_get_new_line(fd, &line);
-//	close(fd);
-//	printf("---Test_GNL_1---\n");
-//	fd = open("./test1", O_RDWR);
-//	ft_check_get_new_line(fd, &line);
-//	close(fd);
+	fd = open("./test0", O_RDWR);
+	printf("---Test_GNL_0---\n");
+	ft_check_get_new_line(fd, &line);
+	close(fd);
+	printf("---Test_GNL_1---\n");
+	fd = open("./test1", O_RDWR);
+	ft_check_get_new_line(fd, &line);
+	close(fd);
 //	printf("---Test_GNL_2---\n");
 //	fd = open("./test2", O_RDWR);
 //	ft_check_get_new_line(fd, &line);
