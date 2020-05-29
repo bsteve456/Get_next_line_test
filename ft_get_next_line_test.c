@@ -6,7 +6,7 @@
 /*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 14:24:33 by stbaleba          #+#    #+#             */
-/*   Updated: 2019/10/28 21:41:21 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/29 18:38:28 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void ft_check_gnl_loop(int fd, char **line)
 	}
 }
 
-
 int main()
 {
 	char *line;
@@ -71,14 +70,14 @@ int main()
 	fd = open("./test4", O_RDWR);
 	ft_check_gnl_loop(fd, &line);
 	close(fd);
-//	printf("----RANDOM-----\n");
-//	fd = open("/dev/random", O_RDWR);
-//	ft_check_gnl_loop(fd, &line);
-//	close(fd);
-//	printf("---Test_GNL_5---\n");
-//	fd = open("../get_next_line.c", O_RDWR);
-//	ft_check_gnl_loop(fd, &line);
-//	close(fd);
+/*	printf("----RANDOM-----\n");
+	fd = open("/dev/random", O_RDWR);
+	ft_check_gnl_loop(fd, &line);
+	close(fd);
+	printf("---Test_GNL_5---\n");
+	fd = open("../get_next_line.c", O_RDWR);
+	ft_check_gnl_loop(fd, &line);
+	close(fd);*/
 	printf("---Test_GNL_6---\n");
 	fd = open("./test_basic_dino.txt", O_RDWR);
 	ft_check_gnl_loop(fd, &line);
@@ -103,38 +102,32 @@ int main()
 	fd = open("./timmy_test_interleave.txt", O_RDWR);
 	ft_check_gnl_loop(fd, &line);
 	close(fd);
-//	printf("---Test_GNL_12--\n");
-//	fd = open("./long_line", O_RDWR);
-//	ft_check_gnl_loop(fd, &line);
-//	close(fd);
-//	printf("---Test_GNL_13---\n");
-//	fd = open("./long_line_easy", O_RDWR);
-//	ft_check_gnl_loop(fd, &line);
-//	close(fd);
-//	printf("---Test_GNL_14---\n");
-//	fd = open("./long_line_same_length", O_RDWR);
-//	ft_check_gnl_loop(fd, &line);
-//	close(fd);
-//	printf("---Test_GNL_15---\n");
-//	fd = open("./long_line_three", O_RDWR);
-//	ft_check_gnl_loop(fd, &line);
-//	close(fd);
-//	printf("---Test_GNL_16---\n");
-//	fd = open("./moulinetter", O_RDWR);
-//	ft_check_gnl_loop(fd, &line);
-//	close(fd);
-//	printf("---Test_GNL_17---\n");
-//	fd = open("./moulinetter2", O_RDWR);
-//	ft_check_gnl_loop(fd, &line);
-//	close(fd);
-//	printf("---Test_GNL_18---\n");
-//	fd = open("./empty_line_then_char", O_RDWR);
-//	ft_check_gnl_loop(fd, &line);
-//	close(fd);
-//	int i = 0;
-//	while(i < 3){
-//		get_next_line(0, &line);
-//		printf("%s\n", line);
-//		i++;
-//	}
+/*	printf("---Test_GNL_12--\n");
+	fd = open("./long_line", O_RDWR);
+	ft_check_gnl_loop(fd, &line);
+	close(fd);
+	printf("---Test_GNL_13---\n");
+	fd = open("./long_line_easy", O_RDWR);
+	ft_check_gnl_loop(fd, &line);
+	close(fd);
+	printf("---Test_GNL_14---\n");
+	fd = open("./long_line_same_length", O_RDWR);
+	ft_check_gnl_loop(fd, &line);
+	close(fd);
+	printf("---Test_GNL_15---\n");
+	fd = open("./long_line_three", O_RDWR);
+	ft_check_gnl_loop(fd, &line);
+	close(fd);
+	printf("---Test_GNL_16---\n");
+	fd = open("./moulinetter", O_RDWR);
+	ft_check_gnl_loop(fd, &line);
+	close(fd);
+	printf("---Test_GNL_17---\n");
+	fd = open("./moulinetter2", O_RDWR);
+	ft_check_gnl_loop(fd, &line);
+	close(fd);
+	printf("---Test_GNL_18---\n");
+	fd = open("./empty_line_then_char", O_RDWR);
+	ft_check_gnl_loop(fd, &line);
+	close(fd);*/
 }
