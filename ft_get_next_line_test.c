@@ -16,7 +16,7 @@
 #include <fcntl.h>
 #include "../get_next_line.h"
 
-static void 	ft_check_get_new_line(int fd, char **line)
+/*static void 	ft_check_get_new_line(int fd, char **line)
 {
 	int fd_res = 0;
 	printf("fd before gnl : %d\n", fd);
@@ -26,7 +26,7 @@ static void 	ft_check_get_new_line(int fd, char **line)
 		printf("line read by gnl : %s\n", *line);
 	if(line && *line && fd_res != -1)
 		free(*line);
-}
+}*/
 
 static void ft_check_gnl_loop(int fd, char **line)
 {
@@ -50,7 +50,7 @@ int main()
 	char *line;
 	line = NULL;
 	int fd = 0;
-	fd = open("./test0", O_RDWR);
+/*	fd = open("./test0", O_RDWR);
 	printf("---Test_GNL_0---\n");
 	ft_check_get_new_line(fd, &line);
 	close(fd);
@@ -70,14 +70,14 @@ int main()
 	fd = open("./test4", O_RDWR);
 	ft_check_gnl_loop(fd, &line);
 	close(fd);
-/*	printf("----RANDOM-----\n");
+	printf("----RANDOM-----\n");
 	fd = open("/dev/random", O_RDWR);
 	ft_check_gnl_loop(fd, &line);
 	close(fd);
 	printf("---Test_GNL_5---\n");
 	fd = open("../get_next_line.c", O_RDWR);
 	ft_check_gnl_loop(fd, &line);
-	close(fd);*/
+	close(fd);
 	printf("---Test_GNL_6---\n");
 	fd = open("./test_basic_dino.txt", O_RDWR);
 	ft_check_gnl_loop(fd, &line);
@@ -97,11 +97,13 @@ int main()
 	printf("---Test_GNL_10---\n");
 	fd = open("./timmy_test_b.txt", O_RDWR);
 	ft_check_gnl_loop(fd, &line);
-	close(fd);
+	close(fd);*/
 	printf("---Test_GNL_11---\n");
 	fd = open("./timmy_test_interleave.txt", O_RDWR);
 	ft_check_gnl_loop(fd, &line);
 	close(fd);
+	while(1)
+		;
 /*	printf("---Test_GNL_12--\n");
 	fd = open("./long_line", O_RDWR);
 	ft_check_gnl_loop(fd, &line);
